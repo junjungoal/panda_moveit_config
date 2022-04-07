@@ -36,6 +36,7 @@ planner_configs:
     range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
     goal_bias: 0.05  # When close to goal select goal, with this probability? default: 0.05
     delay_collision_checking: 1  # Stop collision checking as soon as C-free parent found. default 1
+    # optimization_objective: MaximizeMinClearanceObjective
   TRRTkConfigDefault:
     type: geometric::TRRT
     range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
@@ -124,6 +125,9 @@ planner_configs:
     type: geometric::TrajOpt
 
 panda_arm:
+  default_planner_config: RRTConnectkConfigDefault
+  # default_planner_config: LBKPIECEkConfigDefault
+  # default_planner_config: RRTstarkConfigDefault
   planner_configs:
     - SBLkConfigDefault
     - ESTkConfigDefault
