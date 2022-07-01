@@ -8,7 +8,10 @@
   <!-- Params for the octomap monitor -->
   <param name="octomap_frame" type="string" value="camera3_color_optical_frame" />
   <!-- <param name="octomap_frame" type="string" value="camera_rgb_optical_frame" /> -->
-  <param name="octomap_resolution" type="double" value="0.05" />
+  <!-- <param name="octomap_resolution" type="double" value="0.05" /> -->
+  <param name="octomap_resolution" type="double" value="0.02" />
+  <!-- <param name="octomap_resolution" type="double" value="0.05" /> -->
+  <!-- <param name="octomap_resolution" type="double" value="0.03" /> -->
   <param name="max_range" type="double" value="5.0" />
   <!-- <param name='cloud_in' value='/camera3/depth_registered/point' /> -->
 
