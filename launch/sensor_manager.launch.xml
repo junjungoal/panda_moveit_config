@@ -6,7 +6,7 @@
   <rosparam command="load" file="$(find panda_moveit_config)/config/sensors_kinect_pointcloud.yaml" />
 
   <!-- Params for the octomap monitor -->
-  <param name="octomap_frame" type="string" value="camera3_color_optical_frame" />
+  <param name="octomap_frame" type="string" value="camera_color_optical_frame" />
   <!-- <param name="octomap_frame" type="string" value="camera_rgb_optical_frame" /> -->
   <!-- <param name="octomap_resolution" type="double" value="0.05" /> -->
   <param name="octomap_resolution" type="double" value="0.02" />
