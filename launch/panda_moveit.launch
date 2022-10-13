@@ -3,10 +3,12 @@
   <arg name="load_gripper" default="true" />
   <arg name="launch_rviz" default="true" />
   <arg name='launch_camera' default='false'/>
+  <arg name='launch_apriltag' default='false'/>
 
           <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="position_joint_trajectory_controller"/> -->
   <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_1" args="0 0 0 0 0 0 world panda_link0" />
 
+<!-- <include file="$(find panda_moveit_config)/launch/bringup_stag.launch" /> -->
 
   <include file="$(find panda_moveit_config)/launch/move_group.launch">
     <arg name="load_gripper" value="$(arg load_gripper)" />
@@ -15,6 +17,9 @@
 
   <group if='$(arg launch_camera)'>
       <include file='$(find panda_moveit_config)/launch/third_person_camera.launch' />
+  </group>
+  <group if='$(arg launch_apriltag)'>
+      <include file='$(find apriltag_ros)/launch/continuous_detection.launch' />
   </group>
 
   <include file="$(find panda_moveit_config)/launch/moveit_rviz.launch" if="$(arg launch_rviz)" />

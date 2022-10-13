@@ -34,15 +34,15 @@ Processing enabled by this node:
 -->
 
 <launch>
-  <arg name="namespace"           default="camera"/>
-  <arg name="camera"              default="camera"/>
-  <arg name="tf_prefix"           default="$(arg camera)"/>
+  <arg name="namespace"           default="camera2"/>
+  <arg name="camera"              default="camera2"/>
+  <arg name="tf_prefix"           default="$(arg camera2)"/>
   <arg name="external_manager"    default="false"/>
   <arg name="manager"             default="realsense2_camera_manager"/>
 
   <!-- Camera device specific arguments -->
 
-  <arg name="serial_no"           default=""/>
+  <arg name="serial_no"           default="825312070694"/>
   <arg name="usb_port_id"         default=""/>
   <arg name="device_type"         default=""/>
   <arg name="json_file_path"      default=""/>
@@ -200,11 +200,12 @@ Processing enabled by this node:
         args="load depth_image_proc/convert_metric standalone_nodelet">
         <remap from="image_raw" to="$(arg namespace)/depth/image_rect_raw"/>
         <remap from="image" to="$(arg namespace)/depth/image_meters"/>
-  </node>
+    </node>
+
    <node pkg="tf" type="static_transform_publisher" name="camera_link_broadcaster"
-  args="1.34243 0.0489759 0.968818   0.682433 0.647928 -0.249525 -0.228501 /panda_link0 /camera_color_optical_frame 30"/>
+  args="1.69689 -0.0281758 1.23286   0.654681 0.626702 -0.304294 -0.29333 /panda_link0 /camera_color_optical_frame 30"/>
   <node pkg="tf" type="static_transform_publisher" name="world2camera_link_broadcaster"
-      args="1.34243 0.0489759 0.968818   0.682433 0.647928 -0.249525 -0.228501 /world /camera_link 30"/>
+      args="1.69689 -0.0281758 1.23286   0.654681 0.626702 -0.304294 -0.29333 /world /camera_link 30"/>
 
   <node name="configure_temporal_filter" pkg="dynamic_reconfigure" type="dynparam"
     args="set_from_parameters $(arg camera)/temporal">
