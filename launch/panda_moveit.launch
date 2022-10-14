@@ -1,10 +1,23 @@
 <?xml version="1.0" ?>
 <launch>
   <arg name="load_gripper" default="true" />
+  <arg name="launch_rviz" default="true" />
 
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="position_joint_trajectory_controller"/>
+  <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="position_joint_trajectory_controller"/> -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_1" args="0 0 0 0 0 0 world panda_link0" />
 
-  <include file="$(find panda_moveit_config)/launch/move_group.launch">
-    <arg name="load_gripper" value="$(arg load_gripper)" />
-  </include>
+    <include file="$(find panda_moveit_config)/launch/move_group.launch">
+        <arg name="load_gripper" value="$(arg load_gripper)" />
+        <arg name="allow_trajectory_execution" value="false"/>
+    </include>
+
+    <include file='$(find panda_moveit_config)/launch/wrist_camera.launch'>
+        <arg name='namespace' value="front_camera" />
+        <arg name='camera' value="front_camera" />
+    </include>
+    <include file='$(find panda_moveit_config)/launch/wrist_camera.launch'>
+        <arg name='namespace' value="back_camera" />
+        <arg name='camera' value="back_camera" />
+    </include>
+  <include file="$(find panda_moveit_config)/launch/moveit_rviz.launch" if="$(arg launch_rviz)" />
 </launch>
